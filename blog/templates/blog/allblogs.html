@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Rajesh Kumar Khatei : Portfolio</title>
+    <title>Rajesh's : Blogs</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -23,44 +23,30 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
-              <a class="nav-item nav-link active" href="https://twitter.com">Twitter</a>
+              <a class="nav-item nav-link" href="https://twitter.com">Twitter</a>
               <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-              <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+              <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
             </div>
           </div>
        </nav>
     </header>
 
     <main role="main">
-
-      <section class="jumbotron text-center">
         <div class="container">
-          <h1>Hi, I'm Rajesh</h1>
-          <p class="lead text-muted">Hey I am Rajesh. I am Python & PHP Developer. I love to work on Python projects.<p>
-            <a href="mailto:rajeshkukhatei@gmail.com" class="btn btn-primary my-2">Email Me</a>
-          </p>
-          <img src="{% static 'rajesh.png' %}"/>
-        </div>
-      </section>
-
-      <div class="album py-5 bg-light">
-        <div class="container">
-
-          <div class="row">
-            {% for job in jobs.all %}
-                <div class="col-md-4">
-                  <div class="card mb-4 shadow-sm">
-                    <img class="card-img-top" src="{{ job.image.url }}"/>
-                    <div class="card-body">
-                      <p class="card-text">{{ job.summary }}</p>
-                    </div>
-                  </div>
-                </div>
+            <h1 class="text-center pt-3">Welcome to Rajesh's Blogs</h1>
+            <br><br>
+            <h2>Latest Blogs</h2>
+            <hr>
+            {% for blog in blogs.all %}
+                <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+                {{ blog.publish_date_format }}
+                <br>
+                <img src="{{ blog.image.url }}" height="200" width="200" class="img-fluid"/>
+                <br><br>
+                <p>{{ blog.summary }}</p>
+                <hr>
             {% endfor %}
-          </div>
         </div>
-      </div>
-
     </main>
 
     <footer class="text-muted">
